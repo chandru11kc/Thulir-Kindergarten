@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admissions | THULIR Kindergarten{% endblock %}
+{% block nav_admissions %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admissions.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+    <span class="crumb">Admissions 2026–27</span>
+    <h1>Admissions Are Now Open</h1>
+    <p>A simple, transparent process — because choosing a school shouldn't feel complicated.</p>
+</section>
+
+<!-- ---------- Process Steps (genuine sequence) ---------- -->
+<section class="section">
+    <span class="eyebrow center">How It Works</span>
+    <h2>Five Steps From Enquiry to Enrolment</h2>
+    <p>Each step follows the last — most families complete the full process within a week.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">01</div>
+            <h3>Enquiry</h3>
+            <p>Fill the enquiry form below and we'll respond within a day.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">02</div>
+            <h3>Campus Visit</h3>
+            <p>Walk through the classrooms and meet the teaching team in person.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">03</div>
+            <h3>Application</h3>
+            <p>Submit the application form along with the required documents.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">04</div>
+            <h3>Child Interaction</h3>
+            <p>A short, informal, play-based interaction — no exams, no pressure.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">05</div>
+            <h3>Confirmation</h3>
+            <p>Complete the fee formalities and your child's seat is confirmed.</p>
+        </div>
+    </div>
+
+    <!-- ---------- Quick Enquiry Form ---------- -->
+    <div class="enquiry-form-wrap">
+        <h3>Send a Quick Enquiry</h3>
+
+        {% if user.is_authenticated %}
+        <p class="form-sub">Just tell us a bit about your child and we'll take it from there.</p>
+
+        <form action="" method="POST" class="form-card">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="enquiry">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="enq_name">Your Name</label>
+                    <input type="text" id="enq_name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="enq_phone">Phone Number</label>
+                    <input type="tel" id="enq_phone" name="phone" placeholder="+91 00000 00000" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="enq_email">Email Address</label>
+                    <input type="email" id="enq_email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="enq_program">Program</label>
+                    <select id="enq_program" name="program">
+                        <option value="">Select a program</option>
+                        <option value="playgroup">Play Group</option>
+                        <option value="prekg">Pre-KG</option>
+                        <option value="lkg">LKG</option>
+                        <option value="ukg">UKG</option>
+                        <option value="daycare">Day Care</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="enq_message">Message (optional)</label>
+                <textarea id="enq_message" name="message" rows="3" placeholder="Anything specific you want to ask?"></textarea>
+            </div>
+
+            <button type="submit" class="hero-btn form-submit">Send Enquiry</button>
+        </form>
+        {% else %}
+        <div class="auth-gate">
+            <div class="auth-gate-icon">🔒</div>
+            <h3>Login to Send an Enquiry</h3>
+            <p>Create a free account or log in so we can follow up with you about your child's admission.</p>
+            <div class="auth-gate-actions">
+                <a href="{% url 'login' %}?next={% url 'admissions' %}" class="hero-btn">Login</a>
+                <a href="{% url 'register' %}?next={% url 'admissions' %}" class="link-btn-outline">Create Account</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ---------- Full Admission Application ---------- -->
+<section class="section application-section">
+    <span class="eyebrow center">Step 03</span>
+    <h2>Submit the Admission Application</h2>
+    <p>Fill this in once you've decided — you can still visit the campus first if you'd rather do that before applying.</p>
+
+    {% if user.is_authenticated %}
+    <form action="" method="POST" class="form-card application-form">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="application">
+
+        <h4 class="form-section-title">Child's Details</h4>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="app_child_name">Child's Full Name</label>
+                <input type="text" id="app_child_name" name="child_name" placeholder="Child's full name" required>
+            </div>
+            <div class="form-group">
+                <label for="app_child_dob">Date of Birth</label>
+                <input type="date" id="app_child_dob" name="child_dob" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="app_program">Program Applying For</label>
+            <select id="app_program" name="program" required>
+                <option value="">Select a program</option>
+                <option value="playgroup">Play Group</option>
+                <option value="prekg">Pre-KG</option>
+                <option value="lkg">LKG</option>
+                <option value="ukg">UKG</option>
+                <option value="daycare">Day Care</option>
+            </select>
+        </div>
+
+        <h4 class="form-section-title">Parent / Guardian Details</h4>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="app_parent_name">Parent Name</label>
+                <input type="text" id="app_parent_name" name="parent_name" placeholder="Parent / Guardian name" required>
+            </div>
+            <div class="form-group">
+                <label for="app_parent_phone">Phone Number</label>
+                <input type="tel" id="app_parent_phone" name="parent_phone" placeholder="+91 00000 00000" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="app_parent_email">Email Address</label>
+            <input type="email" id="app_parent_email" name="parent_email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="app_address">Home Address</label>
+            <textarea id="app_address" name="address" rows="3" placeholder="Home address"></textarea>
+        </div>
+
+        <button type="submit" class="hero-btn form-submit">Submit Application</button>
+    </form>
+    {% else %}
+    <div class="auth-gate">
+        <div class="auth-gate-icon">🔒</div>
+        <h3>Login to Submit Your Application</h3>
+        <p>Create a free account or log in — this lets you track your application status and message our admissions team directly.</p>
+        <div class="auth-gate-actions">
+            <a href="{% url 'login' %}?next={% url 'admissions' %}" class="hero-btn">Login</a>
+            <a href="{% url 'register' %}?next={% url 'admissions' %}" class="link-btn-outline">Create Account</a>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<!-- ---------- Age Criteria + Documents ---------- -->
+<section class="section blue admission-details">
+    <h2>Eligibility &amp; Documents</h2>
+
+    <div class="details-grid">
+        <div class="details-card">
+            <h3>Age Criteria (as of June 1st)</h3>
+            <table class="age-table">
+                <tr><td>Play Group</td><td>1.5 – 2.5 Years</td></tr>
+                <tr><td>Pre-KG</td><td>2.5 – 3.5 Years</td></tr>
+                <tr><td>LKG</td><td>3.5 – 4.5 Years</td></tr>
+                <tr><td>UKG</td><td>4.5 – 5.5 Years</td></tr>
+            </table>
+        </div>
+
+        <div class="details-card">
+            <h3>Documents Required</h3>
+            <ul class="doc-list">
+                <li>Birth certificate (original + copy)</li>
+                <li>Aadhaar card of the child</li>
+                <li>Recent passport-size photographs</li>
+                <li>Immunisation record</li>
+                <li>Address proof of parent/guardian</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- Final CTA to Register ---------- -->
+<section class="admission-cta">
+    <div class="admission-cta-inner">
+        <h2>Ready to Secure Your Child's Seat?</h2>
+        <p>Create your parent account to start the application, track its status, and message our admissions team directly.</p>
+        <div class="admission-cta-actions">
+            <a href="{% url 'register' %}" class="hero-btn">Create Parent Account</a>
+            <a href="{% url 'login' %}" class="link-btn">Already registered? Log in</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery | THULIR Kindergarten{% endblock %}
+{% block nav_gallery %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+    <span class="crumb">Gallery</span>
+    <h1>Moments From Inside Our Classrooms</h1>
+    <p>A glimpse of the everyday — art tables, story circles, sports day, and the small celebrations in between.</p>
+</section>
+
+<section class="section gallery-section">
+    <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="campus">Campus</button>
+        <button class="filter-btn" data-filter="activities">Activities</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="celebrations">Celebrations</button>
+    </div>
+
+    <div class="gallery-grid">
+        <figure class="gallery-item g-1" data-cat="campus">
+            <img src="{% static 'images/school.webp' %}" alt="Thulir campus building">
+            <figcaption>Our Campus</figcaption>
+        </figure>
+        <figure class="gallery-item g-2" data-cat="activities">
+            <img src="{% static 'images/artclass.webp' %}" alt="Children in art class">
+            <figcaption>Art & Craft Hour</figcaption>
+        </figure>
+        <figure class="gallery-item g-3" data-cat="events">
+            <img src="{% static 'images/sports.jpg' %}" alt="Sports day event">
+            <figcaption>Annual Sports Day</figcaption>
+        </figure>
+        <figure class="gallery-item g-4" data-cat="activities">
+            <img src="{% static 'images/story.jpg' %}" alt="Story time circle">
+            <figcaption>Story Circle</figcaption>
+        </figure>
+        <figure class="gallery-item g-5" data-cat="celebrations">
+            <img src="{% static 'images/annualday.png' %}" alt="Annual day celebration">
+            <figcaption>Annual Day</figcaption>
+        </figure>
+        <figure class="gallery-item g-6" data-cat="campus">
+            <img src="{% static 'images/playground.jpg' %}" alt="Outdoor playground">
+            <figcaption>Outdoor Play Area</figcaption>
+        </figure>
+        <figure class="gallery-item g-7" data-cat="celebrations">
+            <img src="{% static 'images/festival.jpg' %}" alt="Festival celebration">
+            <figcaption>Festival Celebrations</figcaption>
+        </figure>
+        <figure class="gallery-item g-8" data-cat="events">
+            <img src="{% static 'images/graduationday.jpg' %}" alt="UKG graduation ceremony">
+            <figcaption>UKG Graduation Day</figcaption>
+        </figure>
+    </div>
+
+    <p class="gallery-note">Every picture tells a story of learning, laughter, and joyful memories. 
+        Our gallery showcases the special moments that make THULIR Kindergarten a happy place for every child.
+         From colorful classroom activities and creative storytelling sessions to exciting sports events, 
+         cultural celebrations, graduation ceremonies, and festive occasions, each photograph reflects our commitment to providing a 
+         fun, safe, and enriching learning environment. We invite you to explore
+         these precious moments and witness the smiles, confidence, and creativity that blossom every day at THULIR Kindergarten. </p>
+
+<section class="cta">
+    <h2>Want to See This in Person?</h2>
+    <a href="{% url 'admissions' %}">Book a Campus Tour</a>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(function (item) {
+            var show = filter === 'all' || item.dataset.cat === filter;
+            item.style.display = show ? '' : 'none';
+        });
+    });
+});
+</script>
+{% endblock %}
