@@ -1,0 +1,156 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %} 
+Programs | THULIR Kindergarten 
+{% endblock %} 
+{% block nav_programs %} active {% endblock %} 
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'programs.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-banner">
+  <span class="crumb">Programs</span>
+  <h1>A Program for Every Stage of Early Childhood</h1>
+  <p>
+    From a child's very first hours away from home to the year before primary
+    school — each stage has its own curriculum, pace, and classroom setup.
+  </p>
+</section>
+
+<section class="section programs-list">
+  <div class="program-row">
+    <div class="program-info">
+      <span class="program-age">1.5 – 2.5 Years</span>
+      <h2>Play Group</h2>
+      <p>
+        The gentlest introduction to school life. Short hours, high adult
+        attention, and a focus on comfort, sensory play, and simple routines
+        that help children separate from parents with confidence.
+      </p>
+      <ul class="program-points">
+        <li>Sensory & motor-skill play</li>
+        <li>Music, rhymes and free movement</li>
+        <li>Low teacher-to-child ratio for individual attention</li>
+      </ul>
+    </div>
+    <div class="program-visual">
+      <img src="{% static 'images/playgroup.webp' %}" alt="Play Group" />
+    </div>
+  </div>
+
+  <div class="program-row reverse">
+    <div class="program-info">
+      <span class="program-age">2.5 – 3.5 Years</span>
+      <h2>Pre-KG</h2>
+      <p>
+        Structured play begins here. Children start recognising shapes, colours,
+        and letters through games, not worksheets, while building the social
+        skills needed for a classroom setting.
+      </p>
+      <ul class="program-points">
+        <li>Phonics through stories and songs</li>
+        <li>Fine motor skills — tracing, threading, building</li>
+        <li>Group activities to build sharing and turn-taking</li>
+      </ul>
+    </div>
+    <div class="program-visual">
+      <img src="{% static 'images/prekg.webp' %}" alt="Pre-KG" />
+    </div>
+  </div>
+  <div class="program-row">
+    <div class="program-info">
+      <span class="program-age">3.5 – 4.5 Years</span>
+      <h2>LKG</h2>
+      <p>
+        A confident step into academics. Reading readiness, early number sense,
+        and independent thinking are introduced through hands-on activities and
+        guided exploration.
+      </p>
+      <ul class="program-points">
+        <li>Early literacy and number concepts</li>
+        <li>Show-and-tell to build spoken confidence</li>
+        <li>Art, craft and simple science exploration</li>
+      </ul>
+    </div>
+    <div class="program-visual">
+      <img src="{% static 'images/lkg.webp' %}" alt="LGK" />
+    </div>
+  </div>
+
+  <div class="program-row reverse">
+    <div class="program-info">
+      <span class="program-age">4.5 – 5.5 Years</span>
+      <h2>UKG</h2>
+      <p>
+        Preparation for primary school, without losing the joy of learning.
+        Reading fluency, writing, and basic math are built alongside
+        responsibility, focus, and classroom discipline.
+      </p>
+      <ul class="program-points">
+        <li>Reading fluency and guided writing</li>
+        <li>Foundational math and logical thinking</li>
+        <li>School-readiness routines and independence</li>
+      </ul>
+    </div>
+    <div class="program-visual">
+      <img src="{% static 'images/ukg.jpg' %}" alt="UKG" />
+    </div>
+  </div>
+
+  <div class="program-row">
+    <div class="program-info">
+      <span class="program-age">All Ages · Extended Hours</span>
+      <h2>Day Care</h2>
+      <p>
+        For working parents who need trustworthy care beyond school hours.
+        Supervised meals, rest time, homework support for older children, and
+        the same warm caregivers your child already knows.
+      </p>
+      <ul class="program-points">
+        <li>Flexible pick-up windows</li>
+        <li>Supervised rest and homework time</li>
+        <li>Same campus, same familiar teachers</li>
+      </ul>
+    </div>
+    <div class="program-visual">
+      <img src="{% static 'images/childcare.jpg' %}" alt="Day Care" />
+    </div>
+  </div>
+</section>
+
+<!-- ---------- Teaching Approach ---------- -->
+<section class="section blue">
+  <h2>How We Teach</h2>
+  <p>The method behind every program, whatever the age group.</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Play-Based Learning</h3>
+      <p>
+        Concepts are taught through games and stories, not rote memorisation.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Small Group Sizes</h3>
+      <p>
+        Low child-to-teacher ratios so no child is left behind or overlooked.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Parent Partnership</h3>
+      <p>
+        Regular updates and open conversations, not just a report card at
+        year-end.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Not Sure Which Program Fits Your Child?</h2>
+  <a href="{% url 'admissions' %}">Talk to Our Admissions Team</a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,183 @@
+/* ============================================
+   CONTACT PAGE — THULIR Kindergarten
+   ============================================ */
+
+.eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rainbow-coral);
+    margin-bottom: 10px;
+}
+
+/* ---------- Info Cards ---------- */
+
+.contact-info-section { padding-bottom: 40px; }
+
+.contact-cards .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+}
+
+.contact-cards .card p { line-height: 1.6; }
+
+/* ---------- Form + Map Grid ---------- */
+
+.contact-main { padding-top: 20px; }
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.contact-form-wrap h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.form-sub {
+    color: var(--charcoal-soft);
+    font-size: 0.92rem;
+    margin-bottom: 28px;
+    text-align: left;
+    max-width: none;
+}
+
+/* ---------- Form Fields ---------- */
+
+.contact-form {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    border: 1.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    font-family: var(--font-primary);
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    background: var(--cream);
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--rainbow-coral);
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #A8A29A;
+}
+
+.form-submit {
+    position: static;
+    opacity: 1;
+    transform: none;
+    animation: none;
+    width: 100%;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+/* ---------- Map + Hours ---------- */
+
+.contact-map-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.map-frame {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 4 / 3;
+}
+
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.hours-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 26px 28px;
+    border: 1.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.hours-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+}
+
+.hours-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hours-card li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.86rem;
+    color: var(--charcoal-soft);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.hours-card li:last-child { border-bottom: none; padding-bottom: 0; }
+.hours-card li span:first-child { font-weight: 600; color: var(--charcoal); }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 560px) {
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 24px 20px; }
+}

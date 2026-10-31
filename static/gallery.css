@@ -1,0 +1,115 @@
+/* ============================================
+   GALLERY PAGE — THULIR Kindergarten
+   ============================================ */
+
+.gallery-section { padding-top: 70px; }
+
+/* ---------- Filter Tabs ---------- */
+
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 44px;
+}
+
+.filter-btn {
+    padding: 9px 22px;
+    font-family: var(--font-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    background: var(--white);
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+    border-color: var(--rainbow-coral);
+    color: var(--rainbow-coral);
+}
+
+.filter-btn.active {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--rainbow-coral), var(--rainbow-orange));
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.3);
+}
+
+/* ---------- Gallery Grid ---------- */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: linear-gradient(150deg, var(--cream-deep), #FFE3D0);
+}
+
+.gallery-item.g-1 { grid-column: span 2; grid-row: span 2; }
+.gallery-item.g-5 { grid-column: span 2; }
+.gallery-item.g-8 { grid-column: span 2; grid-row: span 2; }
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out-expo);
+}
+
+.gallery-item:hover img { transform: scale(1.08); }
+
+.gallery-item figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.gallery-item:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--charcoal-soft);
+    margin-top: 30px;
+}
+
+.gallery-note code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 190px; }
+    .gallery-item.g-1, .gallery-item.g-8 { grid-column: span 2; grid-row: span 1; }
+    .gallery-item.g-5 { grid-column: span 1; }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .gallery-item.g-1, .gallery-item.g-5, .gallery-item.g-8 { grid-column: span 1; grid-row: span 1; }
+}
