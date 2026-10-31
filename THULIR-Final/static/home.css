@@ -1,0 +1,229 @@
+/* ============================================
+   HOME PAGE — THULIR Kindergarten
+   (announcement + hero only — everything else
+    shared via base.css)
+   ============================================ */
+
+/* ---------- Announcement Marquee ---------- */
+
+.announcement {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: linear-gradient(
+        90deg,
+        var(--rainbow-coral) 0%,
+        var(--rainbow-teal) 30%,
+        var(--rainbow-yellow) 65%,
+        var(--rainbow-lavender) 100%
+    );
+    background-size: 300% 100%;
+    animation: announcementGradient 6s linear infinite;
+    z-index: 998;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(46, 134, 222, 0.25);
+}
+
+@keyframes announcementGradient {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.announcement .track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 1px 4px rgba(22, 50, 79, 0.25);
+    padding-left: 100%;
+}
+
+.announcement .track::before {
+    content: '✦  ';
+    margin-right: 40px;
+    font-size: 0.65rem;
+}
+
+.announcement .track::after {
+    content: '  ✦  ';
+    margin-left: 40px;
+    font-size: 0.65rem;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ============================================
+   HERO — Daytime Sky
+   ============================================ */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, #BFE3FF 0%, #6FB1FC 55%, #2E86DE 100%);
+}
+
+.hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        160deg,
+        rgba(22, 50, 79, 0.35) 0%,
+        rgba(46, 134, 222, 0.4) 35%,
+        rgba(143, 198, 255, 0.3) 70%,
+        rgba(255, 192, 72, 0.2) 100%
+    );
+    z-index: 1;
+}
+
+/* Sun glow, top right */
+.hero .overlay::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 224, 102, 0.35) 0%, transparent 70%);
+    top: -10%;
+    right: -5%;
+    animation: heroFloat 8s ease-in-out infinite;
+}
+
+/* Moon glow, bottom left */
+.hero .overlay::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+    bottom: -5%;
+    left: -3%;
+    animation: heroFloat 10s ease-in-out infinite reverse;
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(20px, -30px) scale(1.05); }
+    66%      { transform: translate(-15px, 15px) scale(0.97); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 780px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(35px);
+    animation: heroReveal 0.9s var(--ease-out-expo) 0.3s forwards;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroReveal 0.9s var(--ease-out-expo) 0.5s forwards;
+}
+
+@keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--rainbow-coral);
+    background: var(--white);
+    border-radius: var(--radius-full);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(22, 50, 79, 0.18), 0 2px 8px rgba(22, 50, 79, 0.08);
+    opacity: 0;
+    transform: translateY(25px);
+    animation: heroReveal 0.9s var(--ease-out-expo) 0.7s forwards;
+    transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease;
+}
+
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 134, 222, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.hero-btn:hover::before { left: 100%; }
+
+.hero-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 44px rgba(22, 50, 79, 0.22), 0 4px 12px rgba(22, 50, 79, 0.1);
+}
+
+.hero-btn:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .hero { min-height: 85vh; }
+}
+
+@media (max-width: 768px) {
+    .announcement { top: 80px; height: 32px; }
+    .announcement .track { font-size: 0.7rem; letter-spacing: 1px; animation-duration: 18s; }
+
+    .hero { min-height: 80vh; padding-top: 112px; }
+    .hero-content h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+    .hero-btn { padding: 14px 32px; font-size: 0.9rem; }
+
+    .hero::after, .hero::before { display: none; }
+}
+
+@media (max-width: 480px) {
+    .hero { min-height: 75vh; padding-top: 112px; }
+    .hero-content h1 { font-size: 1.65rem; }
+    .hero-content p { font-size: 0.9rem; margin-bottom: 28px; }
+}
